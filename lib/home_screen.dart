@@ -10,13 +10,6 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
 
-  late List _posts = [];
-
-  final ConnectDB _connectDB = ConnectDB();
-
-  Future _getPosts() async {
-    _posts = await _connectDB.getPosts();
-  }
 
   @override
   Widget build(BuildContext context) {
