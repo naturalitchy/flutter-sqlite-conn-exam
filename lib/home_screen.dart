@@ -21,7 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
     setState(() {
       myData = data;
       _isLoading = false;
-      print(' ############################ ');
+      print('##### data = ${data}');
     });
   }
 
@@ -120,11 +120,15 @@ class _HomeScreenState extends State<HomeScreen> {
   // Delete an item
   void deleteItem(int id) async {
     await DatabaseHelper.deleteItem(id);
-    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
         content: Text('Successfully deleted!'),
         backgroundColor:Colors.green
-    ));
+      ),
+    );
+    print(' >>> home_screen => before execute _refreshData ');
     _refreshData();
+    print(' >>> home_screen => after execute _refreshData ');
   }
 
   @override

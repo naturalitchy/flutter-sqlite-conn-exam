@@ -172,9 +172,9 @@ class DatabaseHelper {
 
   /// edit item.
   static Future<int> updateItem(int id, String title, String? description) async {
-    print(' id = ${id} ################# ');
-    print(' title = ${title} @@@@@@@@@@@@@@ ');
-    print(' description = ${description} @@@@@@@@@@@@@@ ');
+    print(' >>> id = ${id}  ');
+    print(' >>> title = ${title}  ');
+    print(' >>> description = ${description}  ');
     final db = await DatabaseHelper.db();
     final data = {
       'title' : title,
@@ -196,7 +196,7 @@ class DatabaseHelper {
     final db = await DatabaseHelper.db();
     try {
       await db.delete(
-        'itmes',
+        'items',
         where: 'id = ?',
         whereArgs: [id],
       );
