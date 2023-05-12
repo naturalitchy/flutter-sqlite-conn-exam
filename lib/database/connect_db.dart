@@ -120,12 +120,22 @@ class DatabaseHelper {
     await database.execute('''
       CREATE TABLE items(
         id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-        table TEXT,
+        title TEXT,
         description TEXT,
-        createAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+        createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
       )
     ''');
   }
+  // static Future<void> createTables(sql.Database database) async {
+  //   await database.execute("""
+  //     CREATE TABLE items(
+  //       id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+  //       title TEXT,
+  //       description TEXT,
+  //       createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+  //     )
+  //   """);
+  // }
 
   /// open the database.
   static Future<sql.Database> db() async {
@@ -162,11 +172,14 @@ class DatabaseHelper {
 
   /// edit item.
   static Future<int> updateItem(int id, String title, String? description) async {
+    print(' id = ${id} ################# ');
+    print(' title = ${title} @@@@@@@@@@@@@@ ');
+    print(' description = ${description} @@@@@@@@@@@@@@ ');
     final db = await DatabaseHelper.db();
     final data = {
       'title' : title,
       'description' : description,
-      'createAt' : DateTime.now().toString(),
+      'createdAt' : DateTime.now().toString(),
     };
     final result = await db.update(
       'items',
